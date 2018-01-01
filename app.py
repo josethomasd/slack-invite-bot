@@ -9,7 +9,7 @@ from slackclient import SlackClient
 from flask import Flask, request, jsonify
 
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
-sc = SlackClient(slack_token)
+sc = SlackClient(SLACK_BOT_TOKEN)
 
 app = Flask(__name__)
 
