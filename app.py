@@ -19,11 +19,8 @@ def verify():
     data = request.get_json()
     challenge = data["challenge"]
     return jsonify(
-            summary=make_summary(csv),
-            csv_name=secure_filename(csv.filename)
+            challenge = challenge
         )
-
-
 def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
