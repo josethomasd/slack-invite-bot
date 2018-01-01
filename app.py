@@ -2,10 +2,11 @@ import os
 import sys
 import json
 
-import time
-
 import requests
+
 from flask import Flask, request
+
+SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 
 app = Flask(__name__)
 
@@ -13,9 +14,11 @@ app = Flask(__name__)
 def index():
     return "Hello World"
 
-@app.route('/webhook', methods=['GET'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def verify():
-    return "OK", 200
+    data = request.get_json()
+    log(data)
+    return "ok", 200
 
 
 def log(message):  # simple wrapper for logging to stdout on heroku
