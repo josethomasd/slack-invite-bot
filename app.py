@@ -34,11 +34,15 @@ def log(message):  # simple wrapper for logging to stdout on heroku
     sys.stdout.flush()
 
 def send_greeting(team_id):
+	image_url = "https://i.imgur.com/kCK6yK1.png"
+	attachments = attachments = [{"title": "Welcome",
+                              "image_url": image_url}]
 	sc.api_call(
 		"chat.postMessage",
 		channel=team_id,
-		text="Hello from Python! :tada:"
-		)
+		text="Hello from Python! :tada:",
+		attachments=attachments
+	)
 
 if __name__ == '__main__':
     app.run(debug=True)
