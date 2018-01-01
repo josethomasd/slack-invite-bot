@@ -17,10 +17,13 @@ def index():
 @app.route('/webhook', methods=['GET', 'POST'])
 def verify():
     data = request.get_json()
-    challenge = data["challenge"]
-    return jsonify(
+    log(data)
+    if data["challenge"]:
+    	challenge = data["challenge"]
+    	return jsonify(
             challenge = challenge
         )
+    return "ok", 200
 def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
     sys.stdout.flush()
