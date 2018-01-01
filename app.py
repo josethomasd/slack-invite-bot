@@ -4,7 +4,7 @@ import json
 
 import requests
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 SLACK_BOT_TOKEN = os.environ["SLACK_BOT_TOKEN"]
 
@@ -17,8 +17,11 @@ def index():
 @app.route('/webhook', methods=['GET', 'POST'])
 def verify():
     data = request.get_json()
-    log(data)
-    return "ok", 200
+    challenge = data["challenge"]
+    return jsonify(
+            summary=make_summary(csv),
+            csv_name=secure_filename(csv.filename)
+        )
 
 
 def log(message):  # simple wrapper for logging to stdout on heroku
