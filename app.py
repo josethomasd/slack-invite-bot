@@ -23,18 +23,8 @@ def verify():
     log(data)
     try:
     	if((data["event"]["type"]=='member_joined_channel') & (data["event"]["channel"]=="C69KJGBEJ")):
-    		f = open('helloworld.txt','r')
-    		pre_event_id  = f.read().splitlines()
     		team_id = data["event"]["channel"]
-    		event_id = data["event_id"]
-    		f.close()
-    		f = open('helloworld.txt','w')
-    		f.write(team_id)
-    		f.close()
-    		if pre_event_id[0]!=event_id:
-    			return "ok", 200, send_greeting(team_id)
-    		else:
-    			return "ok", 200
+    		return "ok", 200, send_greeting(team_id)
     except Exception,e: 
         print str(e)
     return "ok", 200
@@ -53,6 +43,7 @@ def send_greeting(team_id):
 		text="Welcome! :tada:",
 		attachments=attachments
 		)
+    	time.sleep(5)
 
 if __name__ == '__main__':
     app.run(debug=True)
