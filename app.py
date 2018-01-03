@@ -1,7 +1,7 @@
 import os
 import sys
 import json
-
+import time
 import requests
 
 from slackclient import SlackClient
@@ -35,8 +35,13 @@ def verify():
     			log("Pickle fail")
     		emp = pickle.load(pickle_off)
     		event_id = data["event_id"]
-    		team_id = data["event"]["channel"]
-    		if(event_id!=team_id):
+    		# team_id = data["event"]["channel"]
+    		pickling_on = open("Emp.pickle","wb")
+    		pickle.dump(event_id, pickling_on)
+    		pickling_on.close()
+    		log('Old Event id: '+ emp)
+    		log('Current Event id:' + event_id) 		
+    		if(event_id!=emp):
     			return "ok", 200, send_greeting(team_id)
     except Exception,e: 
         print str(e)
