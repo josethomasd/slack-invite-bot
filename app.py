@@ -35,7 +35,7 @@ def verify():
     			log("Pickle fail")
     		emp = pickle.load(pickle_off)
     		event_id = data["event_id"]
-    		# team_id = data["event"]["channel"]
+    		team_id = data["event"]["channel"]
     		pickling_on = open("Emp.pickle","wb")
     		pickle.dump(event_id, pickling_on)
     		pickling_on.close()
