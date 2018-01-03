@@ -34,6 +34,7 @@ def verify():
     			pickle_off = open("Emp.pickle","rb")
     			log("Pickle fail")
     		emp = pickle.load(pickle_off)
+    		pickling_on.close()
     		event_id = data["event_id"]
     		team_id = data["event"]["channel"]
     		pickling_on = open("Emp.pickle","wb")
